@@ -39,11 +39,11 @@ cd [repository-name]
 2. Set up the backend:
 ```bash
 cd backend
-python -m venv venv
+python -m venv venv-311
 # On Windows:
-.\venv\Scripts\activate
+.\venv-311\Scripts\activate
 # On Unix or MacOS:
-source venv/bin/activate
+source venv-311/bin/activate
 
 pip install -r requirements.txt
 ```
@@ -60,9 +60,9 @@ npm install
 ```bash
 cd backend
 # On Windows:
-.\venv\Scripts\activate
+.\venv-311\Scripts\activate
 # On Unix or MacOS:
-source venv/bin/activate
+source venv-311/bin/activate
 
 uvicorn main:app --reload
 ```
