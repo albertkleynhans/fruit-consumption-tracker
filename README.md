@@ -27,6 +27,7 @@ A full-stack web application for tracking fruit consumption over time, built wit
 - Python 3.11.6 specifically (other versions may cause compatibility issues)
 - Node.js 18 or later (required for Vite)
 - npm (comes with Node.js)
+- Rustup (Rust toolchain installer)
 
 ## Installation
 
@@ -72,7 +73,6 @@ uvicorn main:app --reload
 cd frontend
 npm run dev
 ```
-
 3. Access the application:
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000
