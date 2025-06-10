@@ -1,16 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Container, Paper, Typography, Box } from '@mui/material';
 import FruitForm from './components/FruitForm';
 import FruitChart from './components/FruitChart';
 import { FruitEntry } from './types';
+import { api } from './services/api';
 
 function App() {
   const [entries, setEntries] = useState<FruitEntry[]>([]);
 
-  const handleNewEntry = (entry: FruitEntry) => {
-    setEntries([...entries, entry]);
+  // Load existing entries when component mounts
+  useEffect(() => {
+    const loadEntries = async () => {
+      try {
+        const data = await api.getEntries();
+        setEntries(data);
+      } catch (error) {
+        console.error('Error loading entries:', error);
+      }
+    };
+    loadEntries();
+  }, []);
+
+  const handleNewEntry = async (entry: FruitEntry) => {
+    try {
+      await api.addEntry(entry);
+      const updatedEntries = await api.getEntries();
+      setEntries(updatedEntries);
+    } catch (error) {
+      console.error('Error adding entry:', error);
+    }
   };
 
   return (
